@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Motivational Message</title>
+    <style>
+        * { font-size: 3vw; }
+        body { background-image: url('fllowerp1.jpg'); background-repeat: no-repeat; background-size: cover; }
+        h1 { background-color: black; color: white; width: 50%; font-family: 'Brush Script MT', cursive;border-radius: 20px;  }
+        h2 { border: solid; width: 80%; border-radius: 20px; }
+        input[type="submit"] { width: 30%; }
+        .button {background-color: #4682b4; border-radius: 50%; width: 30%; height: 2pxS	; font-size: 1em;  padding: 5px 10px;  }
+    </style>
+</head>
+<body>
+    <center>
+                <br/>
+
+        <h1>..Motivational Message ..</h1>
+        <h2 id="msg"></h2>
+        <h3 id="aut"></h3>
+        <br/>
+        <form onSubmit="gm(event)">
+            <input type="submit" value="Get Mssg" class="button"/>
+        </form>
+        <script>
+            function gm(event) {
+                event.preventDefault();
+                let msg = document.getElementById("msg");
+                let aut = document.getElementById("aut");
+
+                let url = "https://api.quotable.io/random";
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        msg.innerHTML = data.content;
+                        aut.innerHTML = data.author;
+                    })
+                    .catch(err => msg.innerHTML = "issue" + err);
+            }
+        </script>
+    </center>
+</body>
+</html>
